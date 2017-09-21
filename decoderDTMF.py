@@ -21,13 +21,18 @@ def time_plot(duração):
 		sd.wait()
 
 		som = audio[:,0]
+		som = som[9000:]
 
 		t = np.linspace(0,1,1*fs)
+		t = t[9000:]
 
 		plt.clf()
-		plt.plot(t,som)
+		
+		#plt.figure(figsize=(10, 10))
+		plt.plot(t[1500:2100],som[1500:2100])
 		plt.xlabel('tempo')
-		plt.xlabel('sin(t) recebido')
+		plt.ylabel('sin(t) recebido')
+		plt.ylim(-0.55,0.55)
 		plt.pause(1)
 
 		lista = np.concatenate([lista,som])
@@ -43,8 +48,7 @@ def reproduz(som):
 	print(som)
 	sd.play(som, fs)
 	sd.wait()
-
-som,Fourier_Transform = time_plot(1)
+som,Fourier_Transform = time_plot(9)
 
 salva(som,'Sound_received.txt') # salva os som
 salva(Fourier_Transform,'Tranformada_de_fourier.txt')
