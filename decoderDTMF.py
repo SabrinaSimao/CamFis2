@@ -1,57 +1,52 @@
 import sounddevice as sd
 import matplotlib.pyplot as plt
 import time
-import numpy
+import numpy as np
+import scipy
 
-def salva(som):
-	thefile = open('Sound_received.txt', 'w')
+def salva(som,nome_do_arquivo):
+	print("salvando")
+	thefile = open(nome_do_arquivo, 'w')
 	for item in som:
 	  thefile.write("%s\n" % item)
 
-def time_plot():
+def time_plot(duração):
+	plt.ion()
 	fs = 44100
-	duração = 10
-	inicio =0
+	lista =[]
+
 	for tempo in range(duração):
 		print("loop:",tempo)
-		audio = sd.rec(int(3*fs), fs, channels=1)
+		audio = sd.rec(int(1*fs), fs, channels=1)
 		sd.wait()
 
 		som = audio[:,0]
 
-		t = numpy.linspace(0,1,3*fs)
+		t = np.linspace(0,1,1*fs)
 
-		plt.plot(som,t)
-		plt.show(block = False)
+		plt.clf()
+		plt.plot(t,som)
+		plt.xlabel('tempo')
+		plt.xlabel('sin(t) recebido')
+		plt.pause(1)
 
-		time.sleep(30000)
-		plt.close()
+		lista = np.concatenate([lista,som])
 
-fs = 44100
-duração = 10
-print("recording")
-audio = sd.rec(int(duração*fs), fs, channels=1)
-sd.wait()
-
-som = audio[:,0]
-
-t = numpy.linspace(0,1,duração*fs)
-plt.plot(t,som)
-plt.ylabel('some numbers')
-plt.show()
+	print(lista)
+	Fourier_Transform = scipy.fft(lista)
+	return (lista, Fourier_Transform)
 
 
 
+def reproduz(som):
+	print("reprodução:")
+	print(som)
+	sd.play(som, fs)
+	sd.wait()
 
+som,Fourier_Transform = time_plot(1)
 
+salva(som,'Sound_received.txt') # salva os som
+salva(Fourier_Transform,'Tranformada_de_fourier.txt')
 
-
-# reproduz o som
-print("reprodução:")
-print(som)
-sd.play(som, fs)
-
-# aguarda fim da reprodução
-sd.wait()
-
-salva(som) # salva os som
+print(Fourier_Transform)
