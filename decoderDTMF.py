@@ -3,13 +3,20 @@ import matplotlib.pyplot as plt
 import time
 import numpy as np
 import scipy
+import soundfile as sf
 
-def salva(som,nome_do_arquivo):
+def salva_txt(som,nome_do_arquivo):
 	print("salvando")
 	thefile = open(nome_do_arquivo, 'w')
 	for item in som:
 	  thefile.write("%s\n" % item)
-	nome_do_arquivo.close()
+	thefile.close()
+
+def salva_wav(som,nome_do_arquivo):
+	print("salvando som em: ",nome_do_arquivo)
+	fs = 44100
+	sf.write(nome_do_arquivo, som, fs)
+
 
 
 def time_plot(duração):
@@ -56,9 +63,9 @@ def reproduz(som):
 	sd.wait()
 
 
-som,Fourier_Transform = time_plot(1)
+som,Fourier_Transform = time_plot(2)
 
-salva(som,'Sound_received.txt') # salva os som
-salva(Fourier_Transform,'Tranformada_de_fourier.txt')
+salva_wav(som,'Sound_received.wav') # salva os som
+salva_txt(Fourier_Transform,'Tranformada_de_fourier.txt')
 
 print(Fourier_Transform)
