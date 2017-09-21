@@ -9,7 +9,7 @@ def salva(som,nome_do_arquivo):
 	thefile = open(nome_do_arquivo, 'w')
 	for item in som:
 	  thefile.write("%s\n" % item)
-	nome_do_arquivo.close()
+	thefile.close()
 
 
 def time_plot(duração):
