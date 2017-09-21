@@ -5,7 +5,7 @@ import math
 
 
 fs = 44100
-tempo = 0.5
+tempo = 1
 t = np.linspace(0,tempo,fs*tempo)
 
 def Telefone(tx):
