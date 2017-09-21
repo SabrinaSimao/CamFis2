@@ -10,6 +10,8 @@ import math
 import matplotlib.pyplot as plt
 import sounddevice as sd
 from pynput import keyboard
+from tkinter import *
+import threading
 
 fs = 44100
 tempo = 0.5
@@ -36,6 +38,9 @@ t9 = y3 + x3
 t0 = y4 + x2
 
 
+def plot(x):
+    plt.plot(t,x)
+    plt.show()
 
 def on_press(key):
     try:
@@ -50,8 +55,10 @@ def on_release(key):
         key))
     if key == keyboard.KeyCode.from_char(char=9):
         print("Voce apertou o 9")
+        x = t9
         sd.play(t9, fs)
-        sd.wait()
+        sd.wait()        
+        
     if key == keyboard.KeyCode.from_char(char=8):
         print("Voce apertou o 8")
         sd.play(t8, fs)
@@ -84,6 +91,7 @@ def on_release(key):
         print("Voce apertou o 1")
         sd.play(t1, fs)
         sd.wait()
+
     if key == keyboard.KeyCode.from_char(char=0):
         print("Voce apertou o 0")
         sd.play(t0, fs)
@@ -92,8 +100,9 @@ def on_release(key):
         # Stop listener
         return False
 print("APERTE ESC PARA SAIR")
+
 # Collect events until released
 with keyboard.Listener(
         on_press=on_press,
-        on_release=on_release) as listener:
-    listener.join()
+        on_release=on_release) as listener: listener.join()
+

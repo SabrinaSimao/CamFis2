@@ -1,18 +1,28 @@
 import sounddevice as sd
+import matplotlib.pyplot as plt
+import numpy as np
+import math
 
 
 fs = 44100
-duration = 2
+tempo = 0.5
+t = np.linspace(0,tempo,fs*tempo)
 
-audio = sd.rec(int(duration*fs), fs, channels=1)
-sd.wait()
+def Telefone(tx):
 
-y = audio[:,0]
+    sd.play(tx, fs)
+    sd.wait()
+    
+    plt.close("all")
+    plt.title('Send Sound Wave')
+    plt.plot(t, tx)
+    plt.xlabel('Time')
+    plt.ylabel('Sin(t)')
+    plt.xlim(0,0.01)
+    plt.ylim(-2,2)
+    plt.show()
 
-# reproduz o som
-print("reprodução")
-print(y)
-sd.play(y, fs)
 
-# aguarda fim da reprodução
-sd.wait()
+
+
+
