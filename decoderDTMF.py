@@ -5,7 +5,8 @@ import numpy as np
 import scipy
 import soundfile as sf
 
-def salva_txt(som,nome_do_arquivo):
+def salva(som,nome_do_arquivo):
+
 	print("salvando")
 	thefile = open(nome_do_arquivo, 'w')
 	for item in som:
@@ -59,7 +60,7 @@ def time_plot(duração):
 def reproduz(som):
 	print("reprodução:")
 	print(som)
-	sd.play(som, fs)
+	sd.play(som, 44100)
 	sd.wait()
 
 
