@@ -72,7 +72,7 @@ class decoderDTMF(object):
 				return "9"
 
 		else:
-			return "nem uma tecla encontrada"
+			return "nenhuma tecla encontrada"
 
 
 
@@ -121,7 +121,7 @@ class decoderDTMF(object):
 			plt.close()
 
 			frq1,frq2 = fourier.acha_maximos(X,Y)
-			print("tecla precionada: ",self.acha_tecla(frq1,frq2))
+			print("Tecla telefonica acionada: ",self.acha_tecla(frq1,frq2))
 
 
 			lista = np.concatenate([lista,som])
