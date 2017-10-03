@@ -13,6 +13,27 @@ def calcFFT(signal, fs):
         yf = fft(signal)
         return(xf, yf[0:N//2])
 
+def acha_maximos(X,Y):
+	#Acha os dois picos
+
+    n_max = Y.argmax()
+    max1 = X[n_max]
+    print("Valor Maximo 1:")
+    print(max1)
+
+    new_Y = Y
+
+    for i in range(n_max-100, n_max+100):
+       new_Y[i] = 0.0j
+    
+    n_max_2 = new_Y.argmax()
+    max2 = X[n_max_2]
+    print("Valor Maximo 2:")
+    print(max2)
+
+    return(max1,max2)
+
+
 def main():
 
     # Import sound as file
@@ -41,22 +62,7 @@ def main():
     #plt.grid()
     #plt.title('Modulo Fourier audio')
     
-    #Acha os dois picos
 
-    n_max = Y.argmax()
-    max1 = X[n_max]
-    print("Valor Maximo 1:")
-    print(max1)
-
-    new_Y = Y
-
-    for i in range(n_max-100, n_max+100):
-       new_Y[i] = 0.0j
-    
-    n_max_2 = new_Y.argmax()
-    max2 = X[n_max_2]
-    print("Valor Maximo 2:")
-    print(max2)
 
    
 
