@@ -22,7 +22,6 @@ class decoderDTMF(object):
 		#som,Fourier_Transform = self.forever_plot()
 
 		self.salva_wav(som,'Sound_received.wav') # salva os som
-		self.salva_txt(Fourier_Transform,'Tranformada_de_fourier.txt')
 
 		print(Fourier_Transform)
 
@@ -110,7 +109,7 @@ class decoderDTMF(object):
 			plt.title('Modulo Fourier audio')
 
 			
-			plt.pause(0.5)
+			plt.pause(1)
 
 			#plt.figure(figsize=(10, 10))
 			plt.plot(t[1500:2100],som[1500:2100])
@@ -118,7 +117,8 @@ class decoderDTMF(object):
 			plt.ylabel('sin(t) recebido')
 			plt.ylim(-0.55,0.55)
 
-			plt.pause(0.5)
+			plt.pause(1)
+			plt.close()
 
 			frq1,frq2 = fourier.acha_maximos(X,Y)
 			print("tecla precionada: ",self.acha_tecla(frq1,frq2))
