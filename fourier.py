@@ -44,20 +44,19 @@ def main():
     #Acha os dois picos
 
     n_max = Y.argmax()
-    max = X[n_max]
-    print(n_max)
-    print(max)
+    max1 = X[n_max]
+    print("Valor Maximo 1:")
+    print(max1)
 
     new_Y = Y
 
     for i in range(n_max-100, n_max+100):
        new_Y[i] = 0.0j
-       
-
-    print(new_Y)
+    
     n_max_2 = new_Y.argmax()
-    print(n_max_2)
-    print(X[n_max_2])
+    max2 = X[n_max_2]
+    print("Valor Maximo 2:")
+    print(max2)
 
    
 
