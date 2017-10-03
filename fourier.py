@@ -36,10 +36,27 @@ def main():
     plt.title('Modulo Fourier audio')
 
     ## Exibe fase
-    plt.figure("Fase(Y[k])")
-    plt.plot(X,np.angle(Y))
-    plt.grid()
-    plt.title('Modulo Fourier audio')
+    #plt.figure("Fase(Y[k])")
+    #plt.plot(X,np.angle(Y))
+    #plt.grid()
+    #plt.title('Modulo Fourier audio')
+    
+    #Acha os dois picos
+
+    n_max = Y.argmax()
+    max = X[n_max]
+    print(max)
+    index = np.min(np.nonzero(X == max)[0])
+    print(index)
+    new_Y = Y
+    j = 0
+    for i in range(index-10, index+10):
+       new_Y = np.delete(new_Y, i-j)
+       j += 1
+    print(j)
+    print(new_Y)
+    n_max_2 = new_Y.argmax()
+    print(X[n_max_2])
 
     ## Exibe gráficos
     plt.show()
