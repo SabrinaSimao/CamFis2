@@ -45,18 +45,22 @@ def main():
 
     n_max = Y.argmax()
     max = X[n_max]
+    print(n_max)
     print(max)
-    index = np.min(np.nonzero(X == max)[0])
-    print(index)
+
     new_Y = Y
-    j = 0
-    for i in range(index-10, index+10):
-       new_Y = np.delete(new_Y, i-j)
-       j += 1
-    print(j)
+
+    for i in range(n_max-100, n_max+100):
+       new_Y[i] = 0.0j
+       
+
     print(new_Y)
     n_max_2 = new_Y.argmax()
+    print(n_max_2)
     print(X[n_max_2])
+
+   
+
 
     ## Exibe gráficos
     plt.show()
