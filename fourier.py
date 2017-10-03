@@ -31,7 +31,14 @@ def acha_maximos(X,Y):
     print("Valor Maximo 2:")
     print(max2)
 
-    return(max1,max2)
+    if max1 > max2:
+    	maior = max1
+    	menor = max2
+    else:
+    	maior = max2
+    	menor = max1
+
+    return(maior,menor)
 
 
 def main():
