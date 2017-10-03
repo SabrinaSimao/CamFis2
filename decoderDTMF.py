@@ -120,8 +120,8 @@ class decoderDTMF(object):
 
 			plt.pause(0.5)
 
-			fre1,freq2 = fourier.acha_maximos(X,Y)
-			print("tecla precionada: ",acha_tecla(self,frq1,fre2))
+			frq1,frq2 = fourier.acha_maximos(X,Y)
+			print("tecla precionada: ",self.acha_tecla(frq1,frq2))
 
 
 			lista = np.concatenate([lista,som])
