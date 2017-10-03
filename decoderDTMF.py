@@ -40,7 +40,7 @@ class decoderDTMF(object):
 		sf.write(nome_do_arquivo, som, self.fs)
 
 
-	def acha_tecla(self,frq1,fre2):
+	def acha_tecla(self,frq1,frq2):
 		#primera coluna da tabela
 		if 1209 - self.erro <= frq1 <= 1209 + self.erro:
 			if 697 - self.erro <= frq2 <= 697 + self.erro:
