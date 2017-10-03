@@ -1,11 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.fftpack import fft
+from scipy import signal as window
 
 # Calculate de FFT from a signal
 # https://docs.scipy.org/doc/scipy/reference/tutorial/fftpack.html
 def calcFFT(signal, fs):
-        from scipy.fftpack import fft
-        from scipy import signal as window
 
         N  = len(signal)
         T  = 1/fs
