@@ -107,8 +107,8 @@ class decoderDTMF(object):
 			plt.figure("abs(Y[k])")
 			plt.plot(X,np.abs(Y))
 
-			plt.xlabel('')
-			plt.ylabel('')
+			plt.ylabel('decibeis')
+			plt.xlabel('hertz')
 			plt.grid()
 			plt.title('Modulo Fourier audio')
 
