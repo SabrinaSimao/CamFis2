@@ -49,6 +49,8 @@ class decoderDTMF(object):
 				return "4"
 			if 852 - self.erro <= frq2 <= 852 + self.erro:
 				return "7"
+			if 941 - self.erro <= frq2 <= 941 + self.erro:
+				return "*"
 
 		#segunda
 		if 1336 - self.erro <= frq1 <= 1336 + self.erro:
@@ -70,6 +72,8 @@ class decoderDTMF(object):
 				return "6"
 			if 852 - self.erro <= frq2 <= 852 + self.erro:
 				return "9"
+			if 941 - self.erro <= frq2 <= 941 + self.erro:
+				return "#"
 
 		else:
 			return "nenhuma tecla encontrada"
