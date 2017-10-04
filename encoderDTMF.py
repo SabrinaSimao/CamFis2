@@ -36,34 +36,44 @@ class Main():
 #defs de enviar audios e plotar
     def T1(self):
         snd.Telefone(Main.t1)
-        print("Tranformada de fourier: ",scipy.fft(Main.t1))
+        snd.Fourier(Main.t1)
+        #print("Tranformada de fourier: ",scipy.fft(Main.t1))
     def T2(self):
         snd.Telefone(Main.t2)
-        print("Tranformada de fourier: ",scipy.fft(Main.t2))
+        snd.Fourier(Main.t2)
+        #print("Tranformada de fourier: ",scipy.fft(Main.t2))
     def T3(self):
         snd.Telefone(Main.t3)
-        print("Tranformada de fourier: ",scipy.fft(Main.t3))
+        snd.Fourier(Main.t3)
+        #print("Tranformada de fourier: ",scipy.fft(Main.t3))
     def T4(self):
         snd.Telefone(Main.t4)
-        print("Tranformada de fourier: ",scipy.fft(Main.t4))
+        snd.Fourier(Main.t4)
+        #print("Tranformada de fourier: ",scipy.fft(Main.t4))
     def T5(self):
         snd.Telefone(Main.t5)
-        print("Tranformada de fourier: ",scipy.fft(Main.t5))
+        snd.Fourier(Main.t5)
+        #print("Tranformada de fourier: ",scipy.fft(Main.t5))
     def T6(self):
         snd.Telefone(Main.t6)
-        print("Tranformada de fourier: ",scipy.fft(Main.t6))
+        snd.Fourier(Main.t6)
+        #print("Tranformada de fourier: ",scipy.fft(Main.t6))
     def T7(self):
         snd.Telefone(Main.t7)
-        print("Tranformada de fourier: ",scipy.fft(Main.t7))
+        snd.Fourier(Main.t7)
+        #print("Tranformada de fourier: ",scipy.fft(Main.t7))
     def T8(self):
         snd.Telefone(Main.t8)
-        print("Tranformada de fourier: ",scipy.fft(Main.t8))
+        snd.Fourier(Main.t8)
+        #print("Tranformada de fourier: ",scipy.fft(Main.t8))
     def T9(self):
         snd.Telefone(Main.t9)
-        print("Tranformada de fourier: ",scipy.fft(Main.t9))
+        snd.Fourier(Main.t9)
+        #print("Tranformada de fourier: ",scipy.fft(Main.t9))
     def T0(self):
         snd.Telefone(Main.t0)
-        print("Tranformada de fourier: ",scipy.fft(Main.t0))
+        snd.Fourier(Main.t0)
+        #print("Tranformada de fourier: ",scipy.fft(Main.t0))
 
 #interface
     def __init__(self):
