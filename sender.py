@@ -31,13 +31,13 @@ def Fourier(som):
         y_lista[i] = i_db
 
     #plota fourier
-    plt.figure("abs(Y[k])")
+    plt.figure("db")
     plt.plot(X,y_lista)
-    plt.xlim(0, 3000)
+    plt.xlim(0, 2000)
     plt.ylabel('decibeis')
     plt.xlabel('hertz')
     plt.grid()
-    plt.title('Modulo Fourier audio')
+    plt.title('Decibeis por Hz')
     plt.show()
 
 
