@@ -1,9 +1,9 @@
-﻿#Projeto 2 Camada Física - 2017.2
+﻿## Projeto 2 Camada Física - 2017.2
 
 Sabrina S.
 Paulo Tozzo
 
-#Projeto 2.2
+## Projeto 2.2
 
 ## Sinais transmitidos e recebidos
 | Tom   | Sinal Enviado		           |Sinal Recebido	            |
