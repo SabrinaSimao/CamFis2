@@ -25,11 +25,15 @@ def Telefone(tx):
 def Fourier(som):
     
     X,Y = fourier.calcFFT(som, fs)
-    
+    y_lista = Y.tolist()
+    for i in range(len(y_lista)):
+        i_db = 10*(math.log10(np.abs(y_lista[i])/25000))
+        y_lista[i] = i_db
+
     #plota fourier
     plt.figure("abs(Y[k])")
-    plt.plot(X,np.abs(Y))
-    plt.xlim(0, 2000)
+    plt.plot(X,y_lista)
+    plt.xlim(0, 3000)
     plt.ylabel('decibeis')
     plt.xlabel('hertz')
     plt.grid()
