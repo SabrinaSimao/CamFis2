@@ -111,7 +111,7 @@ class decoderDTMF(object):
 			#plota fourier
 			plt.figure("db")
 			plt.plot(X,y_lista)
-
+			plt.xlim(0, 2000)
 			plt.ylabel('decibeis')
 			plt.xlabel('hertz')
 			plt.grid()
