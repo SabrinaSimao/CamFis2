@@ -3,7 +3,7 @@
 Sabrina S.
 Paulo Tozzo
 
-# Projeto 2.2
+#Projeto 2.2
 
 ## Sinais transmitidos e recebidos
 | Tom   | Sinal Enviado		           |Sinal Recebido	            |
