@@ -4,7 +4,7 @@ import time
 import numpy as np
 import scipy
 import soundfile as sf
-
+import math
 import fourier
 
 class decoderDTMF(object):
@@ -101,11 +101,16 @@ class decoderDTMF(object):
 
 			#calcula fourier
 			X,Y = fourier.calcFFT(som, self.fs)
-
+			Y2 = Y
+			y_lista = Y2.tolist()
+			
+			for i in range(len(y_lista)):
+				i_db = 10*(math.log10(np.abs(y_lista[i])/25000))
+				y_lista[i] = i_db
 			
 			#plota fourier
 			plt.figure("abs(Y[k])")
-			plt.plot(X,np.abs(Y))
+			plt.plot(X,y_lista)
 
 			plt.ylabel('decibeis')
 			plt.xlabel('hertz')
@@ -116,10 +121,10 @@ class decoderDTMF(object):
 			plt.pause(1)
 
 			#plt.figure(figsize=(10, 10))
-			plt.plot(t[1500:2100],som[1500:2100])
+			plt.plot(t,som)
 			plt.xlabel('tempo')
 			plt.ylabel('sin(t) recebido')
-			plt.ylim(-0.55,0.55)
+			#plt.ylim(-0.55,0.55)
 
 			plt.pause(1)
 			plt.close()
