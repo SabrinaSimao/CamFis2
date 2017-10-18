@@ -13,7 +13,7 @@ class decoderDTMF(object):
 
 		self.fs = 44100
 		self.erro = 30 # valor que é admitido como erro da frequencia na hora de receber a onda
-		self.loops = 4 
+		self.loops = 1 
 
 	def decode(self):
 
@@ -21,9 +21,9 @@ class decoderDTMF(object):
 
 		#som,Fourier_Transform = self.forever_plot()
 
-		self.salva_wav(som,'Sound_received.wav') # salva os som
+		self.salva_wav(som,'m2.wav') # salva os som
 
-		print(Fourier_Transform)
+		#print(Fourier_Transform)
 
 
 
@@ -91,11 +91,11 @@ class decoderDTMF(object):
 			audio = sd.rec(int(1*self.fs), self.fs, channels=1)
 			sd.wait()
 
-			som = audio[:,0]
-			som = som[9000:] # retira o começo da gravação que sempre esta errada
+			som = audio[:]
+			som = som[:] # retira o começo da gravação que sempre esta errada
 
 			t = np.linspace(0,1,1*self.fs)
-			t = t[9000:] # retira o começo da gravação que sempre esta errada
+			t = t[:] # retira o começo da gravação que sempre esta errada
 
 			plt.clf()
 
