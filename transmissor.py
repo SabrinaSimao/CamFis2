@@ -10,15 +10,15 @@ import math
 class transmissor(object):
 
 	def __init__(self):
-		self.fc1 = 500 #frequencia escolhida arbitrariamente
-		self.fc2 = 800 #frequencia escolhida arbitrariamente
-		self.ac1 = 100
-		self.ac2 = 200
+		self.fc1 = 5000 #frequencia escolhida arbitrariamente
+		self.fc2 = 14000 #frequencia escolhida arbitrariamente
+		self.ac1 = 1
+		self.ac2 = 1
 		self.fs = 44100
 		self.tempo1 = 4
 		self.tempo2 = 3
-		self.t1 = np.linspace(0,1,self.fs*self.tempo1)
-		self.t2 = np.linspace(0,1,self.fs*self.tempo2)
+		self.t1 = np.linspace(0,self.tempo1,self.fs*self.tempo1)
+		self.t2 = np.linspace(0,self.tempo2,self.fs*self.tempo2)
 		self.fp1 = self.ac1*np.sin(2*math.pi*self.fc1*self.t1)
 		self.fp2 = self.ac2*np.sin(2*math.pi*self.fc2*self.t2)
 
@@ -44,13 +44,14 @@ class transmissor(object):
 		am2 = self.modula2(m2f)
 	
 		# self.plot_fourier(self.fp1, fs1)
+		# self.plot_fourier(m1f, fs1)
 		# self.plot_fourier(am1, fs1)
 
-		# self.plot_fourier(self.fp2, fs2)
-		# self.plot_fourier(am2, fs2)
+		#self.plot_fourier(self.fp2, fs2)
+		#self.plot_fourier(am2, fs2)
 		
-		self.reproduz(am1, fs1)
-		self.reproduz(am2, fs2)
+		#self.reproduz(am1, fs1)
+		#self.reproduz(am2, fs2)
 		zero = np.zeros(44100) 
 		#Tempo dos audios é diferente, para somar eles, adicionamos 1 segundo de informacao cheia de zeros
 		am2_new = np.append(am2, zero)
@@ -86,13 +87,13 @@ class transmissor(object):
 		#plota fourier
 		plt.figure("db")
 		plt.plot(X,y_lista)
-		plt.xlim(0, 2000)
+		plt.xlim(0, 22000)
 		plt.ylabel('decibeis')
 		plt.xlabel('hertz')
 		plt.grid()
 		plt.title('Decibeis por Hz')
 
-		plt.pause(1)
+		plt.pause(5)
 
 
 	def LPF(self,signal, cutoff_hz, fs):
