@@ -57,7 +57,7 @@ class transmissor(object):
 		#Tempo dos audios é diferente, para somar eles, adicionamos 1 segundo de informacao cheia de zeros
 		am2_new = np.append(am2, zero)
 		soma = am1 + am2_new #somamos ambos sinais modulados
-		self.salva_wav(soma,"bunda.wav",self.fs)
+		self.salva_wav(soma,"soma.wav",self.fs)
 		self.plot_fourier(soma, 44100)
 		self.reproduz(soma, 44100)
 	
