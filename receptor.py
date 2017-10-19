@@ -2,7 +2,7 @@ import sounddevice as sd
 import matplotlib.pyplot as plt
 import time
 import numpy as np
-import scipy
+from scipy import signal as sg
 import soundfile as sf
 import math
 import fourier
@@ -11,56 +11,53 @@ class receptor(object):
 
 	def __init__(self):
 
-		self.tempo = 3
-
-		self.fc1 = 500 #frequencia escolhida arbitrariamente
-		self.fc2 = 800 #frequencia escolhida arbitrariamente
-		self.ac1 = 100
-		self.ac2 = 200
-		self.t1 = np.linspace(0,1,self.fs*self.tempo1)
-		self.t2 = np.linspace(0,1,self.fs*self.tempo2)
+		self.tempo = 6 # tempo de gravação
+		self.corte = 4000
+		self.fc1 = 5000 #frequencia escolhida arbitrariamente
+		self.fc2 = 14000 #frequencia escolhida arbitrariamente
+		self.ac1 = 1
+		self.ac2 = 1
+		self.fs = 44100
+		self.tempo1 = 4
+		self.tempo2 = 4
+		self.t1 = np.linspace(0,self.tempo1,self.fs*self.tempo)
+		self.t2 = np.linspace(0,self.tempo2,self.fs*self.tempo)
 
 		self.fp1 = self.ac1*np.sin(2*math.pi*self.fc1*self.t1)
 		self.fp2 = self.ac2*np.sin(2*math.pi*self.fc2*self.t2)
 
 
-	def receive(self,fs):
+	def receive(self):
 		lista =[]
 
-		audio = sd.rec(int(self.tempo*fs), fs, channels=1)
+		print("gravando...")
+		audio = sd.rec(int(self.tempo*self.fs), self.fs, channels=1)
 		sd.wait()
-
+		print("Fim da gravacao")
 		som = audio[:,0]
 
-		t = np.linspace(0,1,self.tempo*fs)
-
 		# multiplicar elas portadoras aqui
-		m1 = fp1 * som
-		m2 = fp2 * som
+		m1 = self.fp1 * som
+		m2 = self.fp2 * som
 
-		m1 = LPF(m1,4000,44100)
-		m2 = LPF(m2,4000,44100)
+		m1 = self.LPF(m1,self.corte,self.fs)
+		m2 = self.LPF(m2,self.corte,self.fs)
 
-		reproduz(m1,44100)
-		reproduz(m2,44100)
+		self.reproduz(m1)
+		self.reproduz(m2)
 
+		self.salva_wav(m1,"m1_recebido.wav",self.fs)
+		self.salva_wav(m2,"m2_recebido.wav",self.fs)
 
-
-
-		salva_wav(m1,"m1_recebido",fs)
-		salva_wav(m2,"m2_recebido",fs)
-
-		plt.figure("y(t)")
-		plt.plot(t,som)
-		plt.title('y(t) no tempo')
-
-		plt.pause(1.5)
+		# plt.figure("y(t)")
+		# plt.plot(self.t1,som)
+		# plt.title('y(t) no tempo')
 
 
-		plt.figure("y(t)")
-		plt.plot(t,m1)
-		plt.plot(t,m2)
-		plt.title('y(t) recuperado no tempo')
+		# plt.figure("y(t)")
+		# plt.plot(self.t1,m1)
+		# plt.plot(self.t2,m2)
+		# plt.title('y(t) recuperado no tempo')
 
 	def LPF(self,signal, cutoff_hz, fs):
 		#####################
@@ -82,8 +79,8 @@ class receptor(object):
 	def reproduz(self,som):
 		print("reprodução:")
 		print(som)
-		sd.play(som, fs)
+		sd.play(som, self.fs)
 		sd.wait()
 
 
-decoderDTMF().decode()
+receptor().receive()
