@@ -10,8 +10,8 @@ import math
 class transmissor(object):
 
 	def __init__(self):
-		self.corte = 4000
-		self.fc1 = 5000 #frequencia escolhida arbitrariamente
+		self.corte = 3000
+		self.fc1 = 7000 #frequencia escolhida arbitrariamente
 		self.fc2 = 14000 #frequencia escolhida arbitrariamente
 		self.ac1 = 1
 		self.ac2 = 1
