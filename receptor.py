@@ -40,6 +40,7 @@ class receptor(object):
 		m1 = self.fp1 * som
 		m2 = self.fp2 * som
 
+		# o som passa pelo filtro passa baixa
 		m1 = self.LPF(m1,self.corte,self.fs)
 		m2 = self.LPF(m2,self.corte,self.fs)
 
@@ -49,15 +50,48 @@ class receptor(object):
 		self.salva_wav(m1,"m1_recebido.wav",self.fs)
 		self.salva_wav(m2,"m2_recebido.wav",self.fs)
 
-		# plt.figure("y(t)")
-		# plt.plot(self.t1,som)
-		# plt.title('y(t) no tempo')
+
+		#plot dos tempos
+		plt.figure("y(t)")
+		plt.plot(self.t1,som)
+		plt.pause(2)
+		plt.close()
+		plt.title('y(t) no tempo')
 
 
-		# plt.figure("y(t)")
-		# plt.plot(self.t1,m1)
-		# plt.plot(self.t2,m2)
-		# plt.title('y(t) recuperado no tempo')
+		plt.figure("y(t)")
+		plt.plot(self.t1,m1)
+		plt.plot(self.t2,m2)
+		plt.pause(3)
+		plt.close()
+		plt.title('y(t) recuperado no tempo')
+
+		self.plot_fourier(som,self.fs) #plot do frequencia
+		plt.close()
+
+		self.plot_fourier(m1,self.fs)#plot da frequencia do soms separados
+		self.plot_fourier(m2,self.fs)
+
+	def plot_fourier(self,som,fs):
+		#calcula fourier
+		X,Y = fourier.calcFFT(som, fs)
+		Y2 = Y
+		y_lista = Y2.tolist()
+		
+		for i in range(len(y_lista)):
+			i_db = 10*(math.log10(np.abs(y_lista[i])/25000))
+			y_lista[i] = i_db
+		
+		#plota fourier
+		plt.figure("db")
+		plt.plot(X,y_lista)
+		plt.xlim(0, 22000)
+		plt.ylabel('decibeis')
+		plt.xlabel('hertz')
+		plt.grid()
+		plt.title('Decibeis por Hz')
+
+		plt.pause(5)
 
 	def LPF(self,signal, cutoff_hz, fs):
 		#####################
