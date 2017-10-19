@@ -11,9 +11,9 @@ class receptor(object):
 
 	def __init__(self):
 
-		self.tempo = 6 # tempo de gravação
-		self.corte = 4000
-		self.fc1 = 5000 #frequencia escolhida arbitrariamente
+		self.tempo = 4 # tempo de gravação
+		self.corte = 3000
+		self.fc1 = 7000 #frequencia escolhida arbitrariamente
 		self.fc2 = 14000 #frequencia escolhida arbitrariamente
 		self.ac1 = 1
 		self.ac2 = 1
