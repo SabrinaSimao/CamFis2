@@ -7,84 +7,82 @@ import soundfile as sf
 import math
 import fourier
 
-class decoderDTMF(object):
+class receptor(object):
 
 	def __init__(self):
 
-		self.fs = 44100
-		self.loops = 1
+		self.tempo = 3
 
-	def decode(self):
+		self.fc1 = 500 #frequencia escolhida arbitrariamente
+		self.fc2 = 800 #frequencia escolhida arbitrariamente
+		self.ac1 = 100
+		self.ac2 = 200
+		self.t1 = np.linspace(0,1,self.fs*self.tempo1)
+		self.t2 = np.linspace(0,1,self.fs*self.tempo2)
 
-		som,Fourier_Transform = self.time_plot(self.loops)
-
-		#som,Fourier_Transform = self.forever_plot()
-
-		self.salva_wav(som,'Sound_received.wav') # salva os som
-
-
-	def salva_wav(self,som,nome_do_arquivo):
-		print("salvando som em: ",nome_do_arquivo)
-		sf.write(nome_do_arquivo, som, self.fs)
+		self.fp1 = self.ac1*np.sin(2*math.pi*self.fc1*self.t1)
+		self.fp2 = self.ac2*np.sin(2*math.pi*self.fc2*self.t2)
 
 
-
-
-
-
-	def time_plot(self,duração):
-		plt.ion()
+	def receive(self,fs):
 		lista =[]
 
-		for tempo in range(duração):
-			print("loop:",tempo)
-			audio = sd.rec(int(1*self.fs), self.fs, channels=1)
-			sd.wait()
+		audio = sd.rec(int(self.tempo*fs), fs, channels=1)
+		sd.wait()
 
-			som = audio[:,0]
-			som = som[9000:] # retira o começo da gravação que sempre esta errada
+		som = audio[:,0]
 
-			t = np.linspace(0,1,1*self.fs)
-			t = t[9000:] # retira o começo da gravação que sempre esta errada
+		t = np.linspace(0,1,self.tempo*fs)
 
-			plt.clf()
+		# multiplicar elas portadoras aqui
+		m1 = fp1 * som
+		m2 = fp2 * som
 
-			#calcula fourier
-			X,Y = fourier.calcFFT(som, self.fs)
-			Y2 = Y
-			y_lista = Y2.tolist()
-			
-			for i in range(len(y_lista)):
-				i_db = 10*(math.log10(np.abs(y_lista[i])/25000))
-				y_lista[i] = i_db
-			
-			#plota fourier
-			plt.figure("db")
-			plt.plot(X,y_lista)
-			plt.xlim(0, 2000)
-			plt.ylabel('decibeis')
-			plt.xlabel('hertz')
-			plt.grid()
-			plt.title('Decibeis por Hz')
+		m1 = LPF(m1,4000,44100)
+		m2 = LPF(m2,4000,44100)
 
-			
-			plt.pause(1)
-			plt.close()
+		reproduz(m1,44100)
+		reproduz(m2,44100)
 
 
-			lista = np.concatenate([lista,som])
 
 
-		Fourier_Transform = scipy.fft(lista)
-		#plt.plot(Fourier_Transform)
-		time.sleep(1)
-		return (lista, Fourier_Transform)
+		salva_wav(m1,"m1_recebido",fs)
+		salva_wav(m2,"m2_recebido",fs)
+
+		plt.figure("y(t)")
+		plt.plot(t,som)
+		plt.title('y(t) no tempo')
+
+		plt.pause(1.5)
+
+
+		plt.figure("y(t)")
+		plt.plot(t,m1)
+		plt.plot(t,m2)
+		plt.title('y(t) recuperado no tempo')
+
+	def LPF(self,signal, cutoff_hz, fs):
+		#####################
+		# Filtro
+		#####################
+		# https://scipy.github.io/old-wiki/pages/Cookbook/FIRFilter.html
+		nyq_rate = fs/2
+		width = 5.0/nyq_rate
+		ripple_db = 60.0 #dB
+		N , beta = sg.kaiserord(ripple_db, width)
+		taps = sg.firwin(N, cutoff_hz/nyq_rate, window=('kaiser', beta))
+		return( sg.lfilter(taps, 1.0, signal))
+
+	def salva_wav(self,som,nome_do_arquivo,fs):
+		print("salvando som em: ",nome_do_arquivo)
+		sf.write(nome_do_arquivo, som, fs)
 
 
 	def reproduz(self,som):
 		print("reprodução:")
 		print(som)
-		sd.play(som, self.fs)
+		sd.play(som, fs)
 		sd.wait()
 
 
