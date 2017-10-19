@@ -10,8 +10,9 @@ import math
 class transmissor(object):
 
 	def __init__(self):
-		self.fc1 = 5000 #frequencia escolhida arbitrariamente
-		self.fc2 = 14000 #frequencia escolhida arbitrariamente
+		self.corte = 2000
+		self.fc1 = 3000 #frequencia escolhida arbitrariamente
+		self.fc2 = 9000 #frequencia escolhida arbitrariamente
 		self.ac1 = 1
 		self.ac2 = 1
 		self.fs = 44100
@@ -21,7 +22,7 @@ class transmissor(object):
 		self.t2 = np.linspace(0,self.tempo2,self.fs*self.tempo2)
 		self.fp1 = self.ac1*np.sin(2*math.pi*self.fc1*self.t1)
 		self.fp2 = self.ac2*np.sin(2*math.pi*self.fc2*self.t2)
-
+		
 	def transmitir(self):
 		m1, fs1 = sf.read('m1.wav')
 		#m1 = m1[:,1]
@@ -29,8 +30,8 @@ class transmissor(object):
 		m2, fs2 = sf.read('m2.wav')
 		#m2 = m2[:,1]
 
-		m1f = self.LPF(m1, 4000, fs1)
-		m2f = self.LPF(m2, 4000, fs2)
+		m1f = self.LPF(m1, self.corte, fs1)
+		m2f = self.LPF(m2, self.corte, fs2)
 
 		#self.plot_fourier(m1f,fs1)
 		#self.plot_fourier(m2f,fs2)
