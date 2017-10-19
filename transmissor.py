@@ -10,9 +10,9 @@ import math
 class transmissor(object):
 
 	def __init__(self):
-		self.corte = 2000
-		self.fc1 = 3000 #frequencia escolhida arbitrariamente
-		self.fc2 = 9000 #frequencia escolhida arbitrariamente
+		self.corte = 4000
+		self.fc1 = 5000 #frequencia escolhida arbitrariamente
+		self.fc2 = 14000 #frequencia escolhida arbitrariamente
 		self.ac1 = 1
 		self.ac2 = 1
 		self.fs = 44100
@@ -57,7 +57,7 @@ class transmissor(object):
 		#Tempo dos audios é diferente, para somar eles, adicionamos 1 segundo de informacao cheia de zeros
 		am2_new = np.append(am2, zero)
 		soma = am1 + am2_new #somamos ambos sinais modulados
-
+		self.salva_wav(soma,"bunda.wav",self.fs)
 		self.plot_fourier(soma, 44100)
 		self.reproduz(soma, 44100)
 	
@@ -68,6 +68,10 @@ class transmissor(object):
 	def modula2(self,som):
 		am = som*self.fp2
 		return am
+
+	def salva_wav(self,som,nome_do_arquivo,fs):
+		print("salvando som em: ",nome_do_arquivo)
+		sf.write(nome_do_arquivo, som, fs)
 
 	def reproduz(self,som,fs):
 		print("reprodução...")
