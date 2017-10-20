@@ -39,16 +39,16 @@ A banda ocupada terá uma frequencia maxima de 22050hz pois o som que tem uma fr
 
 ## Graficos da recuperação
 som recebido
-![](./graficos_transmissor/som_recebido_no_tempo.png)
+![](./graficos_receptor/som_recebido_no_tempo.png)
 
 fourier do som demodulado
-![](./graficos_transmissor/fourier_do_som_demodulado.png)
+![](./graficos_receptor/fourier_do_som_demodulado.png)
 
 fourier do som recebido
-![](./graficos_transmissor/fourier_do_som_recebido.png)
+![](./graficos_receptor/fourier_do_som_recebido.png)
 
 som demodulado no tempo
-![](./graficos_transmissor/som_demodulado_no_tempo.png)
+![](./graficos_receptor/som_demodulado_no_tempo.png)
 
 
 sabrina & paulo
