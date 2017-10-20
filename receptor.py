@@ -43,22 +43,22 @@ class receptor(object):
 		# o som passa pelo filtro passa baixa
 		m1 = self.LPF(m1,self.corte,self.fs)
 		m2 = self.LPF(m2,self.corte,self.fs)
-
+		print("Reproduzindo...")
 		self.reproduz(m1)
 		self.reproduz(m2)
-
+		
 		self.salva_wav(m1,"m1_recebido.wav",self.fs)
 		self.salva_wav(m2,"m2_recebido.wav",self.fs)
 
-
+		print("Grafico do som recebido no tempo: ")
 		#plot dos tempos
 		plt.figure("y(t)")
-		plt.plot(self.t1,som)
+		plt.plot(self.t1[44100:44600],som[44100:44600])
 		plt.pause(2)
 		plt.close()
 		plt.title('y(t) no tempo')
 
-
+		print("Som demodulado no tempo: ")
 		plt.figure("y(t)")
 		plt.plot(self.t1,m1)
 		plt.plot(self.t2,m2)
@@ -66,9 +66,11 @@ class receptor(object):
 		plt.close()
 		plt.title('y(t) recuperado no tempo')
 
+		print("Fourier da soma(som recebido): ")
 		self.plot_fourier(som,self.fs) #plot do frequencia
 		plt.close()
 
+		print("Foueirers dos sons demodulados: ")
 		self.plot_fourier(m1,self.fs)#plot da frequencia do soms separados
 		self.plot_fourier(m2,self.fs)
 

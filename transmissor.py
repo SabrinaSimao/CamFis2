@@ -87,7 +87,7 @@ class transmissor(object):
 	def reproduz(self,som,fs):
 		print("reprodução...")
 		#print(som)
-		sd.play(som, fs)
+		sd.play(som*2, fs)
 		sd.wait()
 
 	def plot_fourier(self,som,fs):
