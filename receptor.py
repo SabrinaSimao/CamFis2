@@ -53,18 +53,24 @@ class receptor(object):
 		print("Grafico do som recebido no tempo: ")
 		#plot dos tempos
 		plt.figure("y(t)")
-		plt.plot(self.t1[44100:44600],som[44100:44600])
+		plt.plot(self.t1[44100:45600],som[44100:45600])
 		plt.pause(2)
 		plt.close()
 		plt.title('y(t) no tempo')
 
-		print("Som demodulado no tempo: ")
+		print("Som demodulado no tempo 1: ")
 		plt.figure("y(t)")
-		plt.plot(self.t1,m1)
-		plt.plot(self.t2,m2)
+		plt.plot(self.t1[44100:45600],m1[44100:45600])
 		plt.pause(3)
 		plt.close()
-		plt.title('y(t) recuperado no tempo')
+		plt.title('y(t) recuperado no tempo 1')
+
+		print("Som demodulado no tempo 2: ")
+		plt.figure("y(t)")
+		plt.plot(self.t2[44100:45600],m2[44100:45600])
+		plt.pause(3)
+		plt.close()
+		plt.title('y(t) recuperado no tempo 2')
 
 		print("Fourier da soma(som recebido): ")
 		self.plot_fourier(som,self.fs) #plot do frequencia
