@@ -34,10 +34,11 @@ class transmissor(object):
 		print("Fourier audio filtrado: ")
 		self.plot_fourier(m1f,fs1)
 		self.plot_fourier(m2f,fs2)
+		plt.close()
 		
-		# print("audio filtrados: ")
-		# self.reproduz(m1f,fs1)
-		# self.reproduz(m2f,fs2)
+		print("audio filtrados: ")
+		self.reproduz(m1f,fs1)
+		self.reproduz(m2f,fs2)
 	
 		am1 = self.modula(m1f, self.fp1)
 		am2 = self.modula(m2f, self.fp2)
@@ -56,8 +57,8 @@ class transmissor(object):
 		self.plot_portadora(self.fp2,self.t2,"Portadora 2")
 		
 		print("Mensagens moduladas no tempo: ")
-		self.plot_tempo(am1, self.t1, "Modulada 1")
-		self.plot_tempo(am2, self.t2, "Modulada 2")
+		self.plot_tempo(am1[fs1:fs1+500], self.t1[fs1:fs1+500], "Modulada 1")
+		self.plot_tempo(am2[fs1:fs1+500], self.t2[fs1:fs1+500], "Modulada 2")
 
 		print("Fourier das mensagens moduladas: ")
 		self.plot_fourier(am1,fs1)
@@ -67,9 +68,11 @@ class transmissor(object):
 		#Tempo dos audios é diferente, para somar eles, adicionamos 1 segundo de informacao cheia de zeros
 		am2_new = np.append(am2, zero)
 		soma = am1 + am2_new #somamos ambos sinais modulados
+		
 		self.salva_wav(soma,"soma.wav",self.fs)
 		print("Fourier da soma: ")
 		self.plot_fourier(soma, 44100)
+		
 		print("Reproduzindo audio somado: ")
 		self.reproduz(soma, 44100)
 	
@@ -106,7 +109,7 @@ class transmissor(object):
 		plt.grid()
 		plt.title('Decibeis por Hz')
 
-		plt.pause(2)
+		plt.pause(3)
 
 	def plot_tempo(self, sinal, tempo, nome):
 		plt.figure(nome)
@@ -116,7 +119,7 @@ class transmissor(object):
 		plt.grid()
 		plt.title(nome)
 
-		plt.pause(2)
+		plt.pause(3)
 		plt.close()
 
 	def plot_portadora(self, sinal, tempo, nome):
@@ -125,10 +128,10 @@ class transmissor(object):
 		plt.ylabel("Sinal")
 		plt.xlabel("Tempo")
 		plt.ylim(-1.2,1.2)
-		plt.xlim(0,0.002)
+		plt.xlim(0,0.001)
 		plt.title(nome)
 
-		plt.pause(2)
+		plt.pause(3)
 		plt.close()
 
 	def LPF(self,signal, cutoff_hz, fs):
