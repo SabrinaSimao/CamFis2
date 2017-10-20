@@ -50,5 +50,11 @@ fourier do som recebido
 som demodulado no tempo
 ![](./graficos_receptor/som_demodulado_no_tempo.png)
 
+## recuperação
+| Sinal Enviado		                 |Sinal Recebido	            |
+|--------------------------- ------|----------------------------|
+| ![1](imagem_enconder/som_recebido_modulado_1.png)   |![1](imagem_decoder/som_recebido_modulado_2.png)   |
+| ![1](imagem_enconder/som_recebido_modulado_2.png)   |![1](imagem_decoder/mensagem_modulada_2.png)   |
+
 
 sabrina & paulo
