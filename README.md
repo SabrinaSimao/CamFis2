@@ -53,8 +53,8 @@ som demodulado no tempo
 ## recuperação
  Sinal Enviado|Sinal Recebido|
 :-------------------------:|:-------------------------:
- ![](imagem_enconder/som_recebido_modulado_1.png)   |![](imagem_decoder/mensagem_modulada_no_tempo.png)   
- ![](imagem_enconder/som_recebido_modulado_2.png)   |![](imagem_decoder/mensagem_modulada_2.png)   
+ ![](graficos_receptor/som_recebido_modulado_1.png)   |![](graficos_transmissor/mensagem_modulada_no_tempo.png)   
+ ![](graficos_receptor/som_recebido_modulado_2.png)   |![](graficos_transmissor/mensagem_modulada_2.png)   
 
 
 sabrina & paulo
