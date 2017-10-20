@@ -19,8 +19,10 @@ Utilizamos uma frequencia de corte de 3000hz assim a frequencia das portadoras t
 
 ## Bandas ocupadas
 
+A banda ocupada terá uma frequencia maxima de 22050hz pois o som que tem uma frequencia de 44100hz será dividido em dois para poder ser recuperado
 
-## Graficos
+
+## Graficos da transmição
 ![](./graficos_transmissor/fourier_da_soma_nao_necessario.png)
 
 ![](./graficos_transmissor/fourier_das_mensagens_moduladas.png)
@@ -35,12 +37,18 @@ Utilizamos uma frequencia de corte de 3000hz assim a frequencia das portadoras t
 
 ![](./graficos_transmissor/sinal_original_no_tempo.png)
 
-![](./graficos_transmissor/fourier_das_mensagens_moduladas.png)
-![](./graficos_transmissor/fourier_das_mensagens_moduladas.png)
-![](./graficos_transmissor/fourier_das_mensagens_moduladas.png)
-![](./graficos_transmissor/fourier_das_mensagens_moduladas.png)
-![](./graficos_transmissor/fourier_das_mensagens_moduladas.png)
-![](./graficos_transmissor/fourier_das_mensagens_moduladas.png)
+## Graficos da recuperação
+som recebido
+![](./graficos_transmissor/som_recebido_no_tempo.png)
+
+fourier do som demodulado
+![](./graficos_transmissor/fourier_do_som_demodulado.png)
+
+fourier do som recebido
+![](./graficos_transmissor/fourier_do_som_recebido.png)
+
+som demodulado no tempo
+![](./graficos_transmissor/som_demodulado_no_tempo.png)
 
 
 sabrina & paulo
